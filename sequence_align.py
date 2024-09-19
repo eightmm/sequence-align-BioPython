@@ -45,7 +45,7 @@ def compare_sequences(seq_list1, seq_list2):
 
     for i, seq1 in enumerate(seq_list1):
         for j, seq2 in enumerate(seq_list2):
-            output[i, j] = round(calculate_identity(seq1, seq2), 2)  # 소숫점 두 자리까지 반올림
+            output[i, j] = round(calculate_identity(seq1, seq2), 2)
     return output
 
 def extract_sequences(input_path):
