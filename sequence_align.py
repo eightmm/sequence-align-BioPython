@@ -45,36 +45,36 @@ def compare_sequences(seq_list1, seq_list2):
 
     for i, seq1 in enumerate(seq_list1):
         for j, seq2 in enumerate(seq_list2):
+<<<<<<< HEAD
             output[i, j] = round(calculate_identity(seq1, seq2), 2)
+=======
+            output[i, j] = round(calculate_identity(seq1, seq2), 2)  # round to two decimal places
+>>>>>>> commit
     return output
 
 def extract_sequences(input_path):
+    sequences = []
+    names = []
     if os.path.splitext(input_path)[1].lower() == '.pdb':
-        return [get_sequence_from_pdb(input_path)]
+        sequences = [get_sequence_from_pdb(input_path)]
+        names = [os.path.basename(input_path).split('.')[0]]
     else:
         with open(input_path, 'r') as f:
-            sequences = [line.strip() for line in f if line.strip()]
-        return sequences
+            for line in f:
+                line = line.strip()
+                if ',' in line:
+                    name, seq = line.split(',', 1)
+                    names.append(name.strip())
+                    sequences.append(seq.strip())
+                elif line:
+                    sequences.append(line)
+                    names.append(f"seq{len(names) + 1}")
 
-
-def extract_sequences(input_path):
-    if os.path.splitext(input_path)[1].lower() == '.pdb':
-        return [get_sequence_from_pdb(input_path)], [os.path.basename(input_path).split('.')[0]]
-    else:
-        with open(input_path, 'r') as f:
-            sequences = [line.strip() for line in f if line.strip()]
-        return sequences, [f"{i}" for i in range(len(sequences))]
-
+    return sequences, names
 
 def main(args):
     temp_sequences, temp_names = extract_sequences(args.temp)
     query_sequences, query_names = extract_sequences(args.query)
-
-    if len(temp_names) > 1:
-        temp_names = [f"seq{i+1}" for i in range(len(temp_sequences))]
-    
-    if len(query_names) > 1:
-        query_names = [f"seq{i+1}" for i in range(len(query_sequences))]
 
     identity_matrix = compare_sequences(temp_sequences, query_sequences)
 
