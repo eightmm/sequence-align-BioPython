@@ -36,7 +36,7 @@ pip install biopython pandas numpy
 
 ## Usage
 
-You can calculate sequence identity between two files (PDB or sequence text files) by running the script `sequence_align.py`.
+You can calculate sequence identity between two files (PDB or sequence text files) by running the script ` sequence-identity.py`.
 
 ### Example Usage
 
@@ -60,8 +60,8 @@ You can also run the script directly from the command line as follows:
 python sequence_align.py --temp example/3BEX.pdb --query example/seq.txt --output example/output.tsv
 ```
 
-- `--temp`: Path to the first input file (either a PDB file or a sequence text file).
-- `--query`: Path to the second input file (either a PDB file or a sequence text file).
+- `--temp`: Path to the first input file (either a PDB file or a sequence text file or a fasta file).
+- `--query`: Path to the second input file (either a PDB file or a sequence text file or a fasta file).
 - `--output`: Path to save the output `.tsv` file.
 
 ### Output
@@ -72,9 +72,9 @@ The identity matrix will be saved in the specified `.tsv` file. For example, aft
 
 ```
     seq1   seq2   seq3
-seq1  96.55  73.44  58.62
-seq2  73.44  100.00 71.43
-seq3  58.62  71.43  100.00
+seq1  100.00  73.44   58.62
+seq2  73.44   100.00  71.43
+seq3  58.62   71.43   100.00
 ```
 
 This matrix represents the percentage identity between the sequences extracted from the input files.
