@@ -1,5 +1,5 @@
 
-# Sequence Align using BioPython
+# sequence-identity-calculation-BioPython
 
 This repository contains a Python script to calculate sequence identity between sequences extracted from PDB files or sequence files using BioPython. The identity matrix is saved as a `.tsv` file.
 
